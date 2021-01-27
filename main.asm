@@ -1,39 +1,21 @@
-%macro m_test 0
-  push eax
-  push ebx
-  push ecx
-  push edx
-  pushf
-  mov eax, 4
-  mov ebx, 1
-  mov ecx, test_msg
-  mov edx, 4
-  int 80h
-  popf
-  pop edx
-  pop ecx
-  pop ebx
-  pop eax
-%endmacro
-
 %macro try 2
 
   mov ax, cx
   mov bh, %1
   div bh
   cmp ah, 0
-  jne %2_m
+  jne after_%2
   call %2
-  %2_m: 
+  after_%2: 
 
 %endmacro
+
 section .data
   fizz_msg dd "fizz"
   buzz_msg dd "buzz"
-  test_msg db "test_msg"
 
 section .bss
-  msg resb 10
+  msg resb 9
 
 section .text
   global _start
@@ -68,7 +50,7 @@ l1:
 
 exit:
   mov eax, 1
-  mov ebx, 0
+  xor ebx, ebx
   int 80h
 
 convert_num:
