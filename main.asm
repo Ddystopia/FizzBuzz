@@ -64,7 +64,7 @@ convert_iter:
   mov dl, ah
   add dl, '0'
   push dx 
-  and ax, 0x0f
+  xor ah, ah
   cmp ax, 0
   jne convert_iter
 write_iter:
