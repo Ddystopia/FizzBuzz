@@ -43,7 +43,6 @@ l1:
   iter_end:
   mov [msg], dword 0
   mov [msg+4], dword 0
-  mov [msg+8], dword 0
   inc cx
   cmp cx, 100
   jle l1
